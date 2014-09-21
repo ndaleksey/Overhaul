@@ -34,31 +34,31 @@
                 --><a href="#order_request" id="btn3"></a>
     </div>
     <div>
-        <form id="order_form" method="post">
+        <form id="order_form" method="post" action="add_question" commandName="question">
             <table>
                 <tr>
                     <td>Ваше имя:</td>
-                    <td><input class="textbox" type="text" value="Алексей" maxlength="100"></br></td>
+                    <td><input class="textbox" type="text" value="Алексей" maxlength="100"><br></td>
                 </tr>
                 <tr>
                     <td>E-mail:</td>
-                    <td><input class="textbox" type="text" value="ugtemp@mail.ru" maxlength="100"></br></td>
+                    <td><input class="textbox" type="text" value="ugtemp@mail.ru" maxlength="100"><br></td>
                 </tr>
                 <tr>
                     <td>Адрес:</td>
-                    <td><input class="textbox" type="text" value="Моксва, ул.А.Королева, 16" maxlength="200"></br></td>
+                    <td><input class="textbox" type="text" value="Моксва, ул.А.Королева, 16" maxlength="200"><br></td>
                 </tr>
                 <tr>
                     <td>Телефон:</td>
-                    <td><input class="textbox" type="text" value="555-66-89" maxlength="30"></br></td>
+                    <td><input class="textbox" type="text" value="555-66-89" maxlength="30"><br></td>
                 </tr>
                 <tr>
                     <td>Площадь, м<sup>2</sup>:</td>
-                    <td><input class="textbox" type="text" value="60" maxlength="10" onkeyup = 'this.value=parseInt(this.value) | 0'></br></td>
+                    <td><input class="textbox" type="text" value="60" maxlength="10" onkeyup = 'this.value=parseInt(this.value) | 0'><br></td>
                 </tr>
                 <tr>
                     <td>Количество комнат:</td>
-                    <td><input class="textbox" type="text" value="1" maxlength="5" onkeyup = 'this.value=parseInt(this.value) | 0'></br></td>
+                    <td><input class="textbox" type="text" value="1" maxlength="5" onkeyup = 'this.value=parseInt(this.value) | 0'><br></td>
                 </tr>
                 <tr>
                     <td>Сообщение:</td>

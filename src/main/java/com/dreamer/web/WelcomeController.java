@@ -1,10 +1,18 @@
 package com.dreamer.web;
 
-        import org.springframework.stereotype.Controller;
+import com.dreamer.domain.Question;
+import com.dreamer.service.QuestionService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import java.io.*;
+import java.util.List;
 
 /**
  * Created by Shishkov A.V. on 10.09.2014.
@@ -13,8 +21,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RequestMapping(value = "/")
 public class WelcomeController {
 
-//    @Autowired
-//    private QuestionService questionService;
+    @Autowired
+    private QuestionService questionService;
 
     @RequestMapping(value = "/welcome")
     public String welcome() {
@@ -27,7 +35,7 @@ public class WelcomeController {
     }
 
     @RequestMapping(value = "/order_request")
-    public String order_request() {
+    public String orderRequest() {
         return "order_request";
     }
 
@@ -48,5 +56,28 @@ public class WelcomeController {
         model.addAttribute("roomsQuantity", roomsQuantity);
 
         return "order_response";
+    }
+    @RequestMapping(value = "/add_question")
+    public String addQuestion(@ModelAttribute("question") Question question, BindingResult result) {
+        questionService.addQuestion(question);
+        return "redirect:/questions";
+    }
+
+    @RequestMapping(value = "/questions")
+    public String getQuestions(@ModelAttribute(value = "questions") List<Question> questions, ModelMap model) {
+        questions = questionService.listQuestion();
+
+        try(FileWriter file = new FileWriter(new File("questions.txt"))) {
+            StringBuilder text = new StringBuilder();
+            for (Question question : questions) {
+                text.append(question + "\r\n");
+            }
+            file.write(text.toString());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+//        model.addAttribute("questions", questions);
+        return "questions";
     }
 }
